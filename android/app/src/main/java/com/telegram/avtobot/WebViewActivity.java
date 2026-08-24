@@ -70,6 +70,10 @@ public class WebViewActivity extends Activity {
                 } catch (Exception e) { js("window.appError(" + quote(e.getMessage()) + ");"); }
             }).start();
         }
+        private void putIfPresent(String key, JSONObject input) throws Exception {
+            String value = input.optString(key, "");
+            if (!value.isEmpty()) secure.put(key, value);
+        }
         @JavascriptInterface public void logoutGithub() { secure.clear(); js("window.githubConnected('');"); }
         @JavascriptInterface public void saveSettings(final String raw) {
             new Thread(() -> {
@@ -77,6 +81,11 @@ public class WebViewActivity extends Activity {
                     JSONObject input = new JSONObject(raw);
                     String token = secure.getGithubToken();
                     if (token.isEmpty()) { js("window.appError('Сначала войди через GitHub.');"); return; }
+                    putIfPresent("telegram_token", input);
+                    putIfPresent("groq_key", input);
+                    putIfPresent("gemini_key", input);
+                    putIfPresent("openai_key", input);
+                    input.remove("telegram_token"); input.remove("groq_key"); input.remove("gemini_key"); input.remove("openai_key");
                     String config = input.toString(2);
                     GitHubClient.updateConfig(REPO, token, config);
                     getSharedPreferences("settings", MODE_PRIVATE).edit().putString("last_config", config).apply();

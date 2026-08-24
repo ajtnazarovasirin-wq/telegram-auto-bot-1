@@ -31,7 +31,7 @@ public final class GitHubClient {
     /** GitHub OAuth Device Flow. The client id is public; no client secret is embedded in the APK. */
     public static JSONObject requestDeviceCode(String clientId) throws Exception {
         return new JSONObject(request("POST", "https://github.com/login/device/code", "",
-                new JSONObject().put("client_id", clientId).put("scope", "repo workflow").toString()));
+                new JSONObject().put("client_id", clientId).toString()));
     }
 
     /** Returns access_token when approved, null when still pending. */

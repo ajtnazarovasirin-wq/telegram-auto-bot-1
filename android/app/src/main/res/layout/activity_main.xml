@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F7F8FC">
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="18dp">
+<TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Бот по расписанию" android:textSize="28sp" android:textStyle="bold" android:textColor="#24243A"/>
+<TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Настройки сохраняются автоматически" android:textColor="#667085" android:paddingBottom="14dp"/>
+<Switch android:id="@+id/enabled" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Включить отправку по времени" android:textStyle="bold" android:textColor="#13795B"/>
+<TextView android:id="@+id/saveState" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Изменения сохраняются автоматически" android:textColor="#667085" android:paddingBottom="10dp"/>
+<TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Telegram" android:textSize="20sp" android:textStyle="bold" android:textColor="#5B21B6" android:paddingTop="10dp"/>
+<EditText android:id="@+id/telegramToken" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Токен Telegram-бота" android:inputType="textPassword"/>
+<EditText android:id="@+id/chatTarget" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Канал или чат: @username / chat_id"/>
+<Button android:id="@+id/syncChats" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Загрузить и выбрать чаты"/>
+<TextView android:id="@+id/chatStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Чаты ещё не загружены" android:textColor="#667085"/>
+<TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Генерация текста" android:textSize="20sp" android:textStyle="bold" android:textColor="#5B21B6" android:paddingTop="14dp"/>
+<Spinner android:id="@+id/provider" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+<Button android:id="@+id/loadModels" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Загрузить реальные модели выбранного ИИ"/>
+<EditText android:id="@+id/groqKey" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Groq API-ключ" android:inputType="textPassword"/>
+<EditText android:id="@+id/groqModel" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Модель Groq"/>
+<EditText android:id="@+id/geminiKey" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Gemini API-ключ" android:inputType="textPassword"/>
+<EditText android:id="@+id/geminiModel" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Модель Gemini"/>
+<EditText android:id="@+id/openaiKey" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="GPT/OpenAI API-ключ" android:inputType="textPassword"/>
+<EditText android:id="@+id/openaiModel" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Модель GPT/OpenAI"/>
+<EditText android:id="@+id/topic" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Тема сообщения"/>
+<EditText android:id="@+id/instruction" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Инструкция: повторы запрещены, если не разрешить явно" android:minLines="3" android:gravity="top"/>
+<EditText android:id="@+id/language" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Язык"/>
+<EditText android:id="@+id/maxLength" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Максимальная длина" android:inputType="number"/>
+<TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Расписание и проверка" android:textSize="20sp" android:textStyle="bold" android:textColor="#5B21B6" android:paddingTop="14dp"/>
+<TimePicker android:id="@+id/sendTime" android:layout_width="match_parent" android:layout_height="wrap_content" android:timePickerMode="spinner"/>
+<EditText android:id="@+id/checkDelay" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Проверить через минут" android:inputType="number"/>
+<EditText android:id="@+id/retryCount" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Повторить при временной ошибке" android:inputType="number"/>
+<RadioGroup android:id="@+id/chatMode" android:layout_width="match_parent" android:layout_height="wrap_content"><RadioButton android:id="@+id/selectedChats" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Только выбранные чаты"/><RadioButton android:id="@+id/allChats" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Все доступные чаты"/></RadioGroup>
+<Button android:id="@+id/testNow" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Сгенерировать и отправить сейчас" android:textColor="#FFFFFF" android:backgroundTint="#7C3AED"/>
+<Button android:id="@+id/historyButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Открыть историю и отчёт"/>
+<ProgressBar android:id="@+id/progress" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone" android:indeterminateTint="#7C3AED"/>
+<TextView android:id="@+id/progressText" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#7C3AED" android:textStyle="bold"/>
+<TextView android:id="@+id/log" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Готово к работе" android:textColor="#344054" android:paddingTop="12dp"/>
+</LinearLayout></ScrollView>

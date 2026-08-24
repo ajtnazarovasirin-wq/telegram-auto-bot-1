@@ -1,0 +1,3 @@
+#v2
+0
+/storage/emulated/0/Android/data/com.tyron.code/files/codeassist/projects/project/app/src/main/java/com/telegram/avtobot/MainActivity.java	0	0	text

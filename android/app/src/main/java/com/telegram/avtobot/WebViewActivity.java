@@ -34,18 +34,20 @@ public class WebViewActivity extends Activity {
 
     private void js(String code) { runOnUiThread(() -> web.evaluateJavascript(code, null)); }
     private String quote(String text) { return JSONObject.quote(text == null ? "" : text); }
-    private String accessToken() throws Exception {
-        String token = secure.getGithubToken();
-        if (token.isEmpty()) return "";
-        try { GitHubClient.user(token); return token; }
-        catch (Exception expired) {
-            String refresh = secure.get("github_refresh_token");
-            if (refresh.isEmpty()) return "";
-            JSONObject renewed = GitHubClient.refreshUserToken(GITHUB_CLIENT_ID, refresh);
-            secure.putGithubToken(renewed.getString("access_token"));
-            if (renewed.has("refresh_token")) secure.put("github_refresh_token", renewed.getString("refresh_token"));
-            return renewed.getString("access_token");
-        }
+    private String accessToken() {
+        try {
+            String token = secure.getGithubToken();
+            if (token.isEmpty()) return "";
+            try { GitHubClient.user(token); return token; }
+            catch (Exception expired) {
+                String refresh = secure.get("github_refresh_token");
+                if (refresh.isEmpty()) return "";
+                JSONObject renewed = GitHubClient.refreshUserToken(GITHUB_CLIENT_ID, refresh);
+                secure.putGithubToken(renewed.getString("access_token"));
+                if (renewed.has("refresh_token")) secure.put("github_refresh_token", renewed.getString("refresh_token"));
+                return renewed.getString("access_token");
+            }
+        } catch (Exception ignored) { return ""; }
     }
 
     private final class Bridge {

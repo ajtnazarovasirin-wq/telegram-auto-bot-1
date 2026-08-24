@@ -34,15 +34,21 @@ public final class GitHubClient {
                 new JSONObject().put("client_id", clientId).toString()));
     }
 
-    /** Returns access_token when approved, null when still pending. */
-    public static String pollDeviceToken(String clientId, String deviceCode) throws Exception {
+    /** Returns the token response when approved, null when still pending. */
+    public static JSONObject pollDeviceToken(String clientId, String deviceCode) throws Exception {
         JSONObject result = new JSONObject(request("POST", "https://github.com/login/oauth/access_token", "",
                 new JSONObject().put("client_id", clientId).put("device_code", deviceCode)
                         .put("grant_type", "urn:ietf:params:oauth:grant-type:device_code").toString()));
-        if (result.has("access_token")) return result.getString("access_token");
+        if (result.has("access_token")) return result;
         String error = result.optString("error", "authorization_pending");
         if ("authorization_pending".equals(error) || "slow_down".equals(error)) return null;
         throw new Exception("GitHub login: " + error);
+    }
+
+    public static JSONObject refreshUserToken(String clientId, String refreshToken) throws Exception {
+        return new JSONObject(request("POST", "https://github.com/login/oauth/access_token", "",
+                new JSONObject().put("client_id", clientId).put("refresh_token", refreshToken)
+                        .put("grant_type", "refresh_token").toString()));
     }
 
     public static JSONObject user(String token) throws Exception {

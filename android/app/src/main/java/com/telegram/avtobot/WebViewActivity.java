@@ -34,11 +34,24 @@ public class WebViewActivity extends Activity {
 
     private void js(String code) { runOnUiThread(() -> web.evaluateJavascript(code, null)); }
     private String quote(String text) { return JSONObject.quote(text == null ? "" : text); }
+    private String accessToken() throws Exception {
+        String token = secure.getGithubToken();
+        if (token.isEmpty()) return "";
+        try { GitHubClient.user(token); return token; }
+        catch (Exception expired) {
+            String refresh = secure.get("github_refresh_token");
+            if (refresh.isEmpty()) return "";
+            JSONObject renewed = GitHubClient.refreshUserToken(GITHUB_CLIENT_ID, refresh);
+            secure.putGithubToken(renewed.getString("access_token"));
+            if (renewed.has("refresh_token")) secure.put("github_refresh_token", renewed.getString("refresh_token"));
+            return renewed.getString("access_token");
+        }
+    }
 
     private final class Bridge {
         @JavascriptInterface public String getRepo() { return REPO; }
         @JavascriptInterface public String getUser() {
-            String token = secure.getGithubToken();
+            String token = accessToken();
             if (token.isEmpty()) return "";
             try { return GitHubClient.user(token).optString("login", ""); }
             catch (Exception e) { return ""; }
@@ -59,9 +72,11 @@ public class WebViewActivity extends Activity {
                     long expires = System.currentTimeMillis() + code.optLong("expires_in", 900) * 1000L;
                     while (System.currentTimeMillis() < expires) {
                         Thread.sleep(interval * 1000L);
-                        String token = GitHubClient.pollDeviceToken(GITHUB_CLIENT_ID, device);
-                        if (token != null) {
+                        JSONObject tokenResult = GitHubClient.pollDeviceToken(GITHUB_CLIENT_ID, device);
+                        if (tokenResult != null) {
+                            String token = tokenResult.getString("access_token");
                             secure.putGithubToken(token);
+                            if (tokenResult.has("refresh_token")) secure.put("github_refresh_token", tokenResult.getString("refresh_token"));
                             String user = GitHubClient.user(token).optString("login", "GitHub");
                             js("window.githubConnected(" + quote(user) + ");"); return;
                         }
@@ -79,7 +94,7 @@ public class WebViewActivity extends Activity {
             new Thread(() -> {
                 try {
                     JSONObject input = new JSONObject(raw);
-                    String token = secure.getGithubToken();
+                    String token = accessToken();
                     if (token.isEmpty()) { js("window.appError('Сначала войди через GitHub.');"); return; }
                     putIfPresent("telegram_token", input);
                     putIfPresent("groq_key", input);
@@ -95,7 +110,7 @@ public class WebViewActivity extends Activity {
         }
         @JavascriptInterface public void runNow() {
             new Thread(() -> { try {
-                String token = secure.getGithubToken();
+                String token = accessToken();
                 if (token.isEmpty()) { js("window.appError('Сначала войди через GitHub.');"); return; }
                 GitHubClient.runNow(REPO, token); js("window.runDone();");
             } catch (Exception e) { js("window.appError(" + quote(e.getMessage()) + ");"); }}).start();

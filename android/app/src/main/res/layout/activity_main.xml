@@ -5,6 +5,11 @@
 <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Настройки сохраняются автоматически" android:textColor="#667085" android:paddingBottom="14dp"/>
 <Switch android:id="@+id/enabled" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Включить отправку по времени" android:textStyle="bold" android:textColor="#13795B"/>
 <TextView android:id="@+id/saveState" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Изменения сохраняются автоматически" android:textColor="#667085" android:paddingBottom="10dp"/>
+<TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Онлайн-управление GitHub" android:textSize="20sp" android:textStyle="bold" android:textColor="#5B21B6" android:paddingTop="14dp"/>
+<EditText android:id="@+id/githubToken" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="GitHub token с правами Contents/Actions" android:inputType="textPassword"/>
+<EditText android:id="@+id/githubRepo" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Репозиторий owner/name" android:text="ajtnazarovasirin-wq/telegram-auto-bot-1"/>
+<Button android:id="@+id/publishOnline" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Передать настройки онлайн"/>
+<Button android:id="@+id/runOnline" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Отправить сейчас онлайн"/>
 <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Telegram" android:textSize="20sp" android:textStyle="bold" android:textColor="#5B21B6" android:paddingTop="10dp"/>
 <EditText android:id="@+id/telegramToken" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Токен Telegram-бота" android:inputType="textPassword"/>
 <EditText android:id="@+id/chatTarget" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Канал или чат: @username / chat_id"/>

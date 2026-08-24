@@ -45,3 +45,13 @@ Telegram возвращает немедленный JSON-ответ с поле
 - Groq API: https://console.groq.com/docs/api-reference
 - Gemini API: https://ai.google.dev/api
 - OpenAI Chat Completions: https://developers.openai.com/api/reference/chat-completions/overview/
+
+## Новая версия: HTML-интерфейс внутри APK
+
+Главный экран теперь открывается как локальный HTML-файл внутри WebView. Отдельный сайт для настройки не требуется: Java-часть приложения выполняет сетевые запросы к GitHub, а HTML отвечает только за интерфейс.
+
+Для кнопки «Войти через GitHub» нужен публичный Client ID GitHub OAuth App с включённым Device Flow. Client ID не является секретом и встраивается в `WebViewActivity.java`; ручной Personal Access Token в приложение вводить не нужно. После входа приложение получает OAuth-токен, шифрует его через Android Keystore и использует только для обновления `config.json` и запуска GitHub Actions в репозитории `ajtnazarovasirin-wq/telegram-auto-bot-1`.
+
+Создай OAuth App в GitHub через `Settings → Developer settings → OAuth Apps → New OAuth App`, включи Device Flow и вставь Client ID в константу `GITHUB_CLIENT_ID`. Не вставляй Client Secret в APK. Для онлайн-бота Telegram и AI ключи нужно один раз добавить в `Settings → Secrets and variables → Actions` репозитория с именами `TELEGRAM_BOT_TOKEN`, `GROQ_API_KEY`, `GEMINI_API_KEY` и `OPENAI_API_KEY`. Они не сохраняются в открытом `config.json`.
+
+GitHub Pages и WebView не могут сами безопасно менять файлы репозитория без авторизации. Поэтому APK использует официальный GitHub API с OAuth Device Flow: пользователь подтверждает доступ на странице GitHub, после чего приложение синхронизирует настройки напрямую.

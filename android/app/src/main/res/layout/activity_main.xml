@@ -29,6 +29,7 @@
 <EditText android:id="@+id/language" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Язык"/>
 <EditText android:id="@+id/maxLength" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Максимальная длина" android:inputType="number"/>
 <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Расписание и проверка" android:textSize="20sp" android:textStyle="bold" android:textColor="#5B21B6" android:paddingTop="14dp"/>
+<EditText android:id="@+id/scheduleTimes" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Времена отправки через запятую: 09:00, 14:30, 20:00"/>
 <TimePicker android:id="@+id/sendTime" android:layout_width="match_parent" android:layout_height="wrap_content" android:timePickerMode="spinner"/>
 <EditText android:id="@+id/checkDelay" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Проверить через минут" android:inputType="number"/>
 <EditText android:id="@+id/retryCount" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Повторить при временной ошибке" android:inputType="number"/>

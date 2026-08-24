@@ -17,6 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".GitHubActivity" android:exported="false" />
+        <activity android:name=".TelegramActivity" android:exported="false" />
+        <activity android:name=".AiActivity" android:exported="false" />
+        <activity android:name=".ScheduleActivity" android:exported="false" />
+        <activity android:name=".HistoryActivity" android:exported="false" />
         <receiver android:name=".AlarmReceiver" android:exported="false" />
         <receiver android:name=".CheckReceiver" android:exported="false" />
         <receiver android:name=".BootReceiver" android:exported="true">

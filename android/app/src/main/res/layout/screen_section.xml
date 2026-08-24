@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F6F7FB">
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+<TextView android:id="@+id/screenTitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="28sp" android:textStyle="bold" android:textColor="#1F2937"/>
+<TextView android:id="@+id/screenHint" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#667085" android:paddingTop="6dp" android:paddingBottom="16dp"/>
+<LinearLayout android:id="@+id/content" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="#FFFFFF" android:padding="16dp"/>
+<Button android:id="@+id/actionButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAllCaps="false" android:layout_marginTop="16dp"/>
+<TextView android:id="@+id/result" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#344054" android:paddingTop="14dp"/>
+<Button android:id="@+id/backButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Назад" android:textAllCaps="false" android:layout_marginTop="8dp"/>
+</LinearLayout></ScrollView>

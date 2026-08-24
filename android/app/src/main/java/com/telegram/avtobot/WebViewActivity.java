@@ -15,7 +15,7 @@ import org.json.JSONObject;
 public class WebViewActivity extends Activity {
     private static final String REPO = "ajtnazarovasirin-wq/telegram-auto-bot-1";
     // Public identifier of a GitHub OAuth App with Device Flow enabled. Replace only this public value.
-    private static final String GITHUB_CLIENT_ID = "REPLACE_WITH_GITHUB_OAUTH_CLIENT_ID";
+    private static final String GITHUB_CLIENT_ID = "Iv23lixChUewfqp0Rvsb";
     private final Handler handler = new Handler();
     private WebView web;
     private SecureStore secure;

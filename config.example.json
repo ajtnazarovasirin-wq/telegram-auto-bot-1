@@ -1,0 +1,19 @@
+{
+  "enabled": false,
+  "timezone": "Asia/Almaty",
+  "schedules": [
+    { "time": "09:00", "days": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] }
+  ],
+  "chat_ids": [],
+  "topic": "Полезный совет по программированию",
+  "instruction": "Создай новый текст на русском языке. Не повторяй последние сообщения, если пользователь явно не разрешил повторы.",
+  "language": "русский",
+  "max_length": 700,
+  "provider": "groq",
+  "model": "openai/gpt-oss-120b",
+  "check_after_minutes": 5,
+  "retries": 2,
+  "history_limit": 20
+}
+
+/* Скопируй этот файл в config.json для локального запуска. Секреты здесь не хранятся. */

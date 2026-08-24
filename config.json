@@ -1,16 +1,27 @@
 {
-  "enabled": false,
-  "timezone": "Asia/Almaty",
+  "enabled": true,
+  "timezone": "Asia\/Almaty",
   "schedules": [
-    { "time": "09:00", "days": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] }
+    {
+      "time": "09:00",
+      "days": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ]
+    }
   ],
-  "chat_ids": ["@coding_222573g"],
-  "topic": "Полезный совет по программированию",
+  "chat_ids": [],
+  "topic": "Про программирование",
   "instruction": "Создай новый текст на русском языке. Не повторяй последние сообщения, если пользователь явно не разрешил повторы.",
   "language": "русский",
   "max_length": 700,
   "provider": "groq",
-  "model": "openai/gpt-oss-120b",
+  "model": "openai\/gpt-oss-120b",
   "check_after_minutes": 5,
   "retries": 2,
   "history_limit": 20

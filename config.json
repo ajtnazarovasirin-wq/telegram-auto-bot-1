@@ -23,7 +23,7 @@
   "language": "русский",
   "max_length": 700,
   "provider": "gemini",
-  "model": "",
+  "model": "gemini-3.7-flash",
   "check_after_minutes": 5,
   "retries": 2,
   "history_limit": 20

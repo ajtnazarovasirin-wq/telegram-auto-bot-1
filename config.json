@@ -22,8 +22,8 @@
   "instruction": "Создай новый текст на русском языке. Не повторяй последние сообщения, если пользователь явно не разрешил повторы.",
   "language": "русский",
   "max_length": 700,
-  "provider": "groq",
-  "model": "openai\/gpt-oss-120b",
+  "provider": "gemini",
+  "model": "",
   "check_after_minutes": 5,
   "retries": 2,
   "history_limit": 20
